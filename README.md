@@ -1,8 +1,8 @@
-Лабораторные работы по объектно-ориентированному программированию.
-Вариант 1.
-Инструкция по сборке пректов:
-cd lab*lab_number*
-mkdir build
-cd build
-cmake ../CMakeLists.txt
-make
+Лабораторные работы по объектно-ориентированному программированию.\n
+Вариант 1.\n
+Инструкция по сборке пректов:\n
+cd lab<lab_number>\n
+mkdir build\n
+cd build\n
+cmake ../CMakeLists.txt\n
+make\n
