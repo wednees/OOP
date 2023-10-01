@@ -33,5 +33,10 @@ TEST(test_06, basic_test_set)
 
 TEST(test_07, basic_test_set)
 {
+    ASSERT_TRUE(task(1,10)==17);
+}
+
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
