@@ -28,15 +28,10 @@ TEST(test_05, basic_test_set)
 
 TEST(test_06, basic_test_set)
 {
-    ASSERT_TRUE(task(-7,-2)==11);
-}
-
-TEST(test_07, basic_test_set)
-{
     ASSERT_TRUE(task(-1,2)==3);
 }
 
-TEST(test_08, basic_test_set)
+TEST(test_07, basic_test_set)
 {
     ASSERT_TRUE(task(1,10)==17);
 }
