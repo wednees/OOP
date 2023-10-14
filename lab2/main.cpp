@@ -10,14 +10,12 @@ int main() {
     string a = "010";
     elem2 = Six(a);
 
-    Six sum1 = elem1 + elem2;
-    Six sum2 = elem1 += Six("1");
-    Six diff1 = elem1 - elem2;
-    Six diff2 = elem1 -= Six("1");
+    Six sum = elem1 + elem2;
+    Six diff = elem1 - elem2;
 
     cout << elem1 << ' ' << elem2 << endl;
-    cout << sum1 << ' ' << sum2 << endl;
-    cout << diff1 << ' ' <<  diff2 << endl;
+    cout << sum << endl;
+    cout << diff << endl;
 
     return 0;
 }

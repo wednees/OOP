@@ -52,14 +52,6 @@ Six::Six(const Six & other) {
     }
 }
 
-Six::Six(Six&& other) noexcept {
-    length = other.length;
-    number = other.number;
-
-    other.length = 0;
-    other.number = nullptr;
-}
-
 Six::~Six() noexcept {
     if (length > 0) {
         length = 0;
@@ -139,7 +131,7 @@ bool Six::operator<=(const Six & t) const {
     return !(*this > t);
 }
 
-Six Six::operator+(const Six & t) const {
+Six Six::operator+(const Six & t) {
     int final_length = max(length, t.length) + 1;
     string res(final_length, '0');
 
@@ -154,12 +146,7 @@ Six Six::operator+(const Six & t) const {
     return Six(res);
 }
 
-Six& Six::operator+=(const Six & t) {
-    *this = *this + t;
-    return *this;
-}
-
-Six Six::operator-(const Six & t) const {
+Six Six::operator-(const Six & t) {
     if (*this < t) {
         throw logic_error("Error occured. Result must be positive.");
     }
@@ -183,9 +170,4 @@ Six Six::operator-(const Six & t) const {
     reverse(res.begin(), res.end());
 
     return Six(res);
-}
-
-Six& Six::operator-=(const Six & t) {
-    *this = *this - t;
-    return *this;
 }

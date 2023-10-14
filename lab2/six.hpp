@@ -1,5 +1,4 @@
 #pragma once
-
 #include <string>
 #include <iostream>
 
@@ -11,7 +10,6 @@ public:
     Six(const initializer_list<unsigned char> & t);
     Six(const string & t);
     Six(const Six & other);
-    Six(Six&& other) noexcept;
     bool operator==(const Six & t) const;
     bool operator!=(const Six & t) const;
     bool operator>(const Six & t) const;
@@ -19,13 +17,11 @@ public:
     bool operator<(const Six & t) const;
     bool operator<=(const Six & t) const;
     Six& operator=(const Six & t);
-    Six operator+(const Six & t) const;
-    Six operator-(const Six & t) const;
-    Six& operator+=(const Six & t);
-    Six& operator-=(const Six & t);
+    Six operator+(const Six & t);
+    Six operator-(const Six & t);
     int size() const noexcept;
     unsigned char* array() const noexcept;
-    virtual ~Six() noexcept;
+    ~Six() noexcept;
 private:
     int length;
     unsigned char* number;
