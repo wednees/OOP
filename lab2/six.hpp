@@ -25,7 +25,7 @@ public:
 private:
     int length;
     unsigned char* number;
-    static const int base = 6;
+    const int base = 6;
 };
 
 ostream& operator<<(ostream & os, const Six & t);
