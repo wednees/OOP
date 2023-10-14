@@ -14,7 +14,6 @@ public:
     Six(Six&& other) noexcept;
     bool operator==(const Six & t) const;
     bool operator!=(const Six & t) const;
-    //bool operator!=(const string & t) const;
     bool operator>(const Six & t) const;
     bool operator>=(const Six & t) const;
     bool operator<(const Six & t) const;
@@ -30,7 +29,7 @@ public:
 private:
     int length;
     unsigned char* number;
-    static const int _base = 6;
+    static const int base = 6;
 };
 
 ostream& operator<<(ostream & os, const Six & t);

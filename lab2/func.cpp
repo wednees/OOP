@@ -3,7 +3,6 @@
 
 using namespace std;
 
-// Check char for six-base number system
 bool is_digit_under_six(char s) {
     return (0 <= s - '0') && (s - '0' < 6);
 }
@@ -22,7 +21,7 @@ Six::Six(const initializer_list<unsigned char> & t) {
     number = new unsigned char[length];
     for (int i = 0; i < length; ++i) {
         int j = t.size() - 1 - i;
-        if (!is_digit_under_six(*(t.begin() + j))) throw logic_error("Number must be in six-base system");
+        if (!is_digit_under_six(*(t.begin() + j))) throw logic_error("Error occured. Digits must be under 6.");
         number[i] = *(t.begin() + j);
     }
 }
@@ -39,7 +38,7 @@ Six::Six(const string & t) {
     number = new unsigned char[length];
     for (int i = 0; i < length; ++i) {
         int j = t.size() - 1 - i;
-        if (!is_digit_under_six(t[j])) throw logic_error("Number must be in six-base system");
+        if (!is_digit_under_six(t[j])) throw logic_error("Error occured. Digits must be under 6.");
         number[i] = t[j];
     }
 }
@@ -85,6 +84,20 @@ ostream& operator<<(ostream & os, const Six & t) {
     return os;
 }
 
+Six& Six::operator=(const Six & t) {
+    if (length > 0) {
+        delete[] number;
+    }
+    length = t.length;
+    number = new unsigned char[length];
+
+    for (int i = 0; i < length; ++i) {
+        number[i] = t.number[i];
+    }
+
+    return *this;
+}
+
 bool Six::operator==(const Six & t) const {
     if (length != t.length) {
         return false;
@@ -100,10 +113,6 @@ bool Six::operator==(const Six & t) const {
 bool Six::operator!=(const Six & t) const {
     return !(*this == t);
 }
-
-// bool Six::operator!=(const string & t) const {
-//     return !(*this == t);
-// }
 
 bool Six::operator>(const Six & t) const {
     if (length != t.length) {
@@ -136,8 +145,8 @@ Six Six::operator+(const Six & t) const {
 
     for (int i = 0; i < final_length - 1; i++) {
         int sum = ((i < length) ? number[i] - '0' : 0) + ((i < t.length) ? t.number[i] - '0' : 0);
-        res[i + 1] += (res[i] - '0' + sum) / _base;
-        res[i] = (res[i] - '0' + sum) % _base + '0';
+        res[i + 1] += (res[i] - '0' + sum) / base;
+        res[i] = (res[i] - '0' + sum) % base + '0';
     }
 
     reverse(res.begin(), res.end());
@@ -152,7 +161,7 @@ Six& Six::operator+=(const Six & t) {
 
 Six Six::operator-(const Six & t) const {
     if (*this < t) {
-        throw logic_error("Result can't be negative!");
+        throw logic_error("Error occured. Result must be positive.");
     }
 
     if (*this == t) {
@@ -165,7 +174,7 @@ Six Six::operator-(const Six & t) const {
     for (int i = 0; i < final_length - 1; i++) {
         res[i] += number[i] - '0' - ((i < t.length) ? t.number[i] - '0' : 0);
         if (res[i] - '0' < 0) {
-            res[i] += _base;
+            res[i] += base;
             res[i + 1] -= 1;
         }
     }
@@ -178,19 +187,5 @@ Six Six::operator-(const Six & t) const {
 
 Six& Six::operator-=(const Six & t) {
     *this = *this - t;
-    return *this;
-}
-
-Six& Six::operator=(const Six & t) {
-    if (length > 0) {
-        delete[] number;
-    }
-    length = t.length;
-    number = new unsigned char[length];
-
-    for (int i = 0; i < length; ++i) {
-        number[i] = t.number[i];
-    }
-
     return *this;
 }
