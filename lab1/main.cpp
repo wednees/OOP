@@ -1,5 +1,5 @@
 #include <iostream>
-#include "task.h"
+#include "task.hpp"
 
 int main (void){
     std::cout << "Enter lws and rws" << std::endl;
