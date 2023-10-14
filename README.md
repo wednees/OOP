@@ -7,7 +7,7 @@
 |              3            |    20   |
 ## Инструкция по сборке пректов:
 ```sh
-cd lab<lab_number>
+cd lab* #где * - номер лабораторной работы
 mkdir build
 cd build
 cmake ../CMakeLists.txt
