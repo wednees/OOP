@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Vector::Vector() : buf(nullptr), size_(0), cap(3){ //Vector::Vector() : buf(nullptr), size_(0), cap(3), head(0){ 
+Vector::Vector() : buf(nullptr), size_(0), cap(3){
     buf = new Figure*[cap];
     for (int i = 0; i < cap; i++) {
         buf[i] = nullptr;
@@ -16,13 +16,11 @@ void Vector::resize(int new_size) {
         tmp[i] = nullptr;
     }
     for (int i = 0; i < size_; i++) {
-        //int idx = (head + i) % cap;
-        tmp[i] = buf[i]; //tmp[i] = buf[idx];
+        tmp[i] = buf[i];
     }
     delete [] buf;
     buf = tmp;
     cap = new_size;
-    //head = 0;
 }
 
 int Vector::size() const{ 
@@ -33,18 +31,12 @@ void Vector::push_back(Figure* val){
     if (size_ == cap) {
         resize(cap + 1);
     }
-    //int idx = (head + size_) % cap;
-    buf[size_] = val; //buf[idx] = val;
+    buf[size_] = val;
     size_++;
 }
 
-
-const Figure* Vector::get(int idx) const{
-    if (idx >= 0 && idx < size_) {
-        //int real_ind = (head + idx) % cap;
-        return buf[idx]; //return buf[real_ind];
-    }
-    throw out_of_range("Index is out of range");
+Figure* & Vector::operator[](int idx){
+    return buf[idx];
 }
 
 void Vector::remove(int idx){
@@ -55,27 +47,20 @@ void Vector::remove(int idx){
     Figure** new_buf = new Figure*[cap];
 
     for (int i = 0; i < idx; i++) {
-        // int old_ind = (head + i) % cap;
-        new_buf[i] = buf[i]; //new_buf[i] = buf[old_ind];
+        new_buf[i] = buf[i];
     }
     for (int i = idx; i < size_ - 1; i++) {
-        // int old_ind = (head + i + 1) % cap;
-        new_buf[i] = buf[i + 1]; // new_buf[i] = buf[old_ind];
+        new_buf[i] = buf[i + 1];
     }
 
     delete [] buf;
     buf = new_buf;
     size_--;
-
-    // if (size_ <= cap / 3) {
-    //     resize(cap * 3/5);
-    // }
 }
 
 Vector::~Vector(){
     size_ = 0;
     cap = 0;
-    //head = 0;
     delete [] buf;
     buf = nullptr;
 }

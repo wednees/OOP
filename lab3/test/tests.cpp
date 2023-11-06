@@ -53,7 +53,7 @@ TEST(test_rhomb, test_square03)
     Point p4 = p0;
     Rhomb fig2(p1,p2,p3,p4);
     arr.push_back(&fig2);
-    ASSERT_TRUE(arr.get(0)->square() == 40.0);
+    ASSERT_TRUE(arr[0]->square() == 40.0);
 }
 
 TEST(test_rhomb, test_square04)
@@ -79,7 +79,7 @@ TEST(test_rhomb, test_center_02)
     Point p0(0, 0);
     Rhomb fig2(p1,p2,p3,p4);
     arr.push_back(&fig2);
-    ASSERT_TRUE(arr.get(0)->center() == p0);
+    ASSERT_TRUE(arr[0]->center() == p0);
 }
 
 TEST(test_rhomb, test_center_03)
@@ -129,7 +129,7 @@ TEST(test_pentagon, test_square03)
     Point p1(2, -3), p2(3, -1), p3(5, -3), p4(4, 4), p5(4, -4);
     Pentagon fig(p1,p2,p3,p4,p5);
     arr.push_back(&fig);
-    ASSERT_TRUE(arr.get(0)->square() != 0);
+    ASSERT_TRUE(arr[0]->square() != 0);
 }
 
 TEST(test_pentagon, test_square04)
@@ -153,7 +153,7 @@ TEST(test_pentagon, test_center02)
     Pentagon fig(p1,p2,p3,p4,p5);
     Point p0;
     arr.push_back(&fig);
-    ASSERT_TRUE(arr.get(0)->center() != p0);
+    ASSERT_TRUE(arr[0]->center() != p0);
 }
 
 TEST(test_pentagon, test_center03)
@@ -203,7 +203,7 @@ TEST(test_hexagon, test_square03)
     Point p1(-1, -1), p2(-2, -3), p3(-4, -3), p4(2, 3), p5(5, 1), p6(-5, -1);
     Hexagon fig(p1,p2,p3,p4,p5,p6);
     arr.push_back(&fig);
-    ASSERT_TRUE(arr.get(0)->square() != 0.0);
+    ASSERT_TRUE(arr[0]->square() != 0.0);
 }
 
 TEST(test_hexagon, test_square04)
@@ -227,7 +227,7 @@ TEST(test_hexagon, test_center02)
     Point p0;
     Hexagon fig(p1,p2,p3,p4,p5,p6);
     arr.push_back(&fig);
-    ASSERT_TRUE(arr.get(0)->center() != p0);
+    ASSERT_TRUE(arr[0]->center() != p0);
 }
 
 TEST(test_hexagon, test_center03)

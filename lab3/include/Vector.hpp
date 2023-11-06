@@ -9,14 +9,12 @@ class Vector
         void resize(int new_size);
         int  size() const;
         void push_back(Figure* val);
-        const Figure* get(int ind) const;
         void remove(int ind);
+        Figure* & operator[] (int idx);
 
         ~Vector();
-
     private:
         Figure** buf;
         int size_;
         int cap;
-        //int head;
 };

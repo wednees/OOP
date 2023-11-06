@@ -26,12 +26,12 @@ int main(){
     arr.push_back(&fig2);
 
     for (size_t i = 0; i < arr.size(); ++i){
-        cout << *arr.get(i) << endl;;
+        cout << *arr[i] << endl;;
     }
 
     arr.remove(0);
 
         for (size_t i = 0; i < arr.size(); ++i){
-        cout << *arr.get(i) << endl;
+        cout << *arr[i] << endl;
     }
 }
