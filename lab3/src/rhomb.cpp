@@ -8,11 +8,11 @@ Rhomb::Rhomb(Point& p1, Point& p2, Point& p3, Point& p4) : po{p1, p2, p3, p4}  {
 
 Point Rhomb::center() const {
     double x = 0, y = 0;
-    for(size_t i = 0; i < 4; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         x += po[i].x_;
         y += po[i].y_;
     }
-    return Point(x / 4.0, y / 4.0);
+    return Point(x / angles_, y / angles_);
 }
 
 double Rhomb::square() const {
@@ -30,7 +30,7 @@ Rhomb& Rhomb::operator = (const Rhomb &other){
         return *this;
     }
 
-    for(size_t i = 0; i < 4; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         po[i] = other.po[i];
     }
 
@@ -42,7 +42,7 @@ Rhomb& Rhomb::operator = (Rhomb &&other){
         return *this;
     }
 
-    for(size_t i = 0; i < 4; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         po[i] = move(other.po[i]);
     }
 
@@ -52,7 +52,7 @@ Rhomb& Rhomb::operator = (Rhomb &&other){
 
 
 bool Rhomb::operator == (const Rhomb& other){
-    for(size_t i = 0; i < 4; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         if(po[i] != other.po[i]){
             return false;
         }
@@ -61,7 +61,7 @@ bool Rhomb::operator == (const Rhomb& other){
 }
 
 ostream& operator << (ostream& os, const Rhomb& Rhomb){
-    for(size_t i = 0; i < 4; ++i){
+    for(size_t i = 0; i < Rhomb::angles_; ++i){
         os << Rhomb.po[i] << endl;
     }
     return os;
@@ -69,7 +69,7 @@ ostream& operator << (ostream& os, const Rhomb& Rhomb){
 
 istream& operator >> (istream& is, Rhomb& Rhomb) {
     cout << "Введите координаты ромба через пробел следующим образом: x1 y1 ... x4 y4:" << endl;
-    for (size_t i = 0; i < 4; ++i) {
+    for (size_t i = 0; i < Rhomb::angles_; ++i) {
         is >> Rhomb.po[i];
     }
     return is;

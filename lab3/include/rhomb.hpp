@@ -23,6 +23,6 @@ class Rhomb : public Figure {
         ~Rhomb(){};
 
     private:
-        Point po[4];
-
+        static const size_t angles_ = 4;
+        Point po[angles_];
 };

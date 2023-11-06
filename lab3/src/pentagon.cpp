@@ -9,11 +9,11 @@ Pentagon::Pentagon(Point& p1, Point& p2, Point& p3, Point& p4, Point& p5) :
 
 Point Pentagon::center() const {
     double x = 0, y = 0;
-    for(size_t i = 0; i < 5; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         x += po[i].x_;
         y += po[i].y_;
     }
-    return Point(x / 5.0, y / 5.0);
+    return Point(x / angles_, y / angles_);
 }
 
 double Pentagon::square() const {
@@ -32,7 +32,7 @@ Pentagon& Pentagon::operator = (const Pentagon &other){
     return *this;
     }
 
-    for(size_t i = 0; i < 5; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         po[i] = other.po[i];
     }
 
@@ -45,7 +45,7 @@ Pentagon& Pentagon::operator = (Pentagon &&other){
     }
 
 
-    for(size_t i = 0; i < 5; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         po[i] = move(other.po[i]);        
     }
 
@@ -53,7 +53,7 @@ Pentagon& Pentagon::operator = (Pentagon &&other){
 }
 
 bool Pentagon::operator == (const Pentagon &other){
-    for(size_t i = 0; i < 5; ++i){
+    for(size_t i = 0; i < angles_; ++i){
         if(po[i] != other.po[i]){
             return false;
         }
@@ -63,7 +63,7 @@ bool Pentagon::operator == (const Pentagon &other){
 
 
 ostream& operator << (ostream& os, const Pentagon &pentagon){
-    for(size_t i = 0; i < 5; ++i){
+    for(size_t i = 0; i < Pentagon::angles_; ++i){
         os << pentagon.po[i] << endl;
     }
     return os;
@@ -72,7 +72,7 @@ ostream& operator << (ostream& os, const Pentagon &pentagon){
 
 istream& operator >> (istream& is, Pentagon &pentagon){
     cout << "Введите координаты пятиугольника через пробел следующим образом: x1 y1 ... x5 y5:" << endl;
-    for(size_t i = 0; i < 5; ++i){
+    for(size_t i = 0; i < Pentagon::angles_; ++i){
          is >> pentagon.po[i];
     }
     return is;

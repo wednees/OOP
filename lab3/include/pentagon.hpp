@@ -23,5 +23,6 @@ public:
     ~Pentagon(){};
 
 private:
-    Point po[5];
+    static const size_t angles_ = 5;
+    Point po[angles_];
 };

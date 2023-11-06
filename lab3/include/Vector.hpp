@@ -18,5 +18,5 @@ class Vector
         Figure** buf;
         int size_;
         int cap;
-        int head;
+        //int head;
 };
