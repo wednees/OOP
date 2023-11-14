@@ -1,24 +1,21 @@
 cmake_minimum_required(VERSION 3.10)
+#требования к версии
+
 project(lab)
+#имя проекта
 
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
-set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
-set(SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set(TEST_DIR ${CMAKE_CURRENT_SOURCE_DIR}/test)
+set(CMAKE_CXX_STANDART 20) #стандарт языка си++
+set(CMAKE_CXX_STANDART_REQUIRED ON) #без соответствия стандарту не будет собран
 
-include_directories(${INCLUDE_DIR})
+add_executable(lab_exe main.cpp figure.hpp point.hpp pentagon.hpp hexagon.hpp rhomb.hpp Vector.hpp)  
+#fLRp - запуск main программы
 
-file(GLOB_RECURSE SOURCES LIST_DIRECTORIES false ${SOURCE_DIR}/*.cpp)
-file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false ${TEST_DIR}/*.cpp)
+enable_testing() #указывает CMake, что планируется использование CTest
+add_executable(lab_test tests.cpp figure.hpp point.hpp pentagon.hpp hexagon.hpp rhomb.hpp Vector.hpp)
+#fLRt - запуск тестов отдельно для функции
 
-add_library(${CMAKE_PROJECT_NAME}_lib ${SOURCES})
-add_executable(${CMAKE_PROJECT_NAME}_exe main.cpp)
-add_executable(${CMAKE_PROJECT_NAME}_test ${TEST_SOURCES})
-
-target_link_libraries(${CMAKE_PROJECT_NAME}_exe PRIVATE ${CMAKE_PROJECT_NAME}_lib)
-target_include_directories(${CMAKE_PROJECT_NAME}_test PRIVATE ${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-target_link_libraries(${CMAKE_PROJECT_NAME}_test PRIVATE ${CMAKE_PROJECT_NAME}_lib gtest gtest_main)
-
-add_test(NAME BASIC COMMAND tests01)
+target_link_libraries(lab_test ${GTEST_LIBRARIES})
+add_test(NAME BASIC COMMAND lab_test)
