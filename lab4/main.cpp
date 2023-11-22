@@ -16,9 +16,12 @@ int main(){
     // double sqr = fig;
     // cout << sqr << endl;
 
-    Point<double> p1(0.0, -2.0), p2(1.0, -2.0), p3(1.0, 2.0), p4(-1.0, 0.0), p5(1.0, 0.0);
-    Pentagon<double> fig(p1,p2,p3,p4,p5);
-    Point<double> p0;
+    // Point<double> p1(0.0, -2.0), p2(1.0, -2.0), p3(1.0, 2.0), p4(-1.0, 0.0), p5(1.0, 0.0);
+    // Pentagon<double> fig(p1,p2,p3,p4,p5);
+    // Point<double> p0;
 
-    cout << p0 << ' ' << fig.center() << endl;
+    // cout << p0 << ' ' << fig.center() << endl;
+
+    auto ptr = make_shared<int>();
+    delete ptr.get();
 }
